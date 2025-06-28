@@ -1,0 +1,354 @@
+# Cursor Guidelines for C# ASP.NET and Angular Developers
+
+## General Coding Standards
+
+### Code Style and Formatting
+- Use consistent indentation (4 spaces for C#, 2 spaces for TypeScript/JavaScript)
+- Follow camelCase for variables and methods in C#
+- Use PascalCase for classes, properties, and public methods in C#
+- Use kebab-case for Angular component selectors and CSS classes
+- Always use meaningful variable and method names
+- Keep methods under 20 lines when possible
+- Keep classes focused on a single responsibility
+
+### Comments and Documentation
+- Write self-documenting code when possible
+- Use XML documentation comments for public APIs in C#
+- Add JSDoc comments for Angular services and complex methods
+- Include TODO comments for future improvements
+- Document complex business logic with inline comments
+
+### Error Handling
+- Use global error handlers in ASP.net
+- Implement proper error boundaries in Angular
+- Log errors with appropriate context
+- Return meaningful error messages to users
+- Use custom exception types for business logic errors
+
+## C# ASP.NET Guidelines
+
+### Naming Conventions
+- Controllers: `[Entity]Controller` (e.g., `UserController`)
+- Services: `I[Entity]Service` and `[Entity]Service` (e.g., `IUserService`, `UserService`)
+- Models: `[Entity]` (e.g., `User`, `UserDto`)
+- ViewModels: `[Entity]ViewModel` (e.g., `UserViewModel`)
+- Repositories: `I[Entity]Repository` and `[Entity]Repository`
+
+### Project Structure
+```
+src/
+├── Controllers/
+├── Services/
+├── Models/
+├── ViewModels/
+├── Data/
+│   ├── Repositories/
+│   └── Context/
+├── Middleware/
+├── Extensions/
+└── Configuration/
+```
+
+### API Design
+- Use RESTful conventions for endpoints
+- Return appropriate HTTP status codes
+- Implement proper input validation using Data Annotations
+- Use DTOs for API responses
+- Implement pagination for list endpoints
+- Use async/await for all database operations
+
+### Dependency Injection
+- Register services in `Program.cs` or `Startup.cs`
+- Use constructor injection
+- Prefer interfaces over concrete implementations
+- Use scoped lifetime for DbContext
+- Use singleton for configuration services
+
+### Database
+- Use Entity Framework Core for data access
+- Implement repository pattern for complex queries
+- Use migrations for database schema changes
+- Include proper indexes for performance
+- Use transactions for multi-table operations
+
+### Security
+- Validate all user inputs
+- Use HTTPS in production
+- Implement proper authentication and authorization
+- Use JWT tokens for API authentication
+- Sanitize data before database operations
+
+## Angular Guidelines
+
+### Naming Conventions
+- Components: `[feature]-[type].component.ts` (e.g., `user-list.component.ts`)
+- Services: `[feature].service.ts` (e.g., `user.service.ts`)
+- Models: `[entity].model.ts` (e.g., `user.model.ts`)
+- Guards: `[feature].guard.ts` (e.g., `auth.guard.ts`)
+- Pipes: `[feature].pipe.ts` (e.g., `currency.pipe.ts`)
+
+### Project Structure
+```
+src/
+├── app/
+│   ├── components/
+│   ├── services/
+│   ├── models/
+│   ├── guards/
+│   ├── pipes/
+│   ├── directives/
+│   └── shared/
+├── assets/
+└── environments/
+```
+
+### Component Architecture
+- Use OnPush change detection strategy when possible
+- Implement proper lifecycle hooks
+- Use Input/Output decorators for component communication
+- Keep components small and focused
+- Use smart/dumb component pattern
+
+### State Management
+- Use Angular services for simple state
+- Consider NgRx for complex state management
+- Implement proper error handling in effects
+- Use selectors for derived state
+- Keep actions simple and descriptive
+
+### TypeScript Best Practices
+- Use strict TypeScript configuration
+- Define interfaces for all data structures
+- Use enums for constants
+- Implement proper type guards
+- Use generics for reusable components
+
+### Angular Services
+- Use providedIn: 'root' for singleton services
+- Implement proper error handling
+- Use observables for async operations
+- Implement proper cleanup in ngOnDestroy
+- Use dependency injection for service dependencies
+
+### Template Guidelines
+- Use Angular directives (ngIf, ngFor, ngSwitch)
+- Implement proper form validation
+- Use reactive forms for complex forms
+- Implement proper accessibility (ARIA labels)
+- Use Angular Material or similar UI library
+
+## Testing Guidelines
+
+### C# Testing
+- Write unit tests for all business logic
+- Use xUnit or NUnit for testing framework
+- Mock external dependencies
+- Test both positive and negative scenarios
+- Aim for 80%+ code coverage
+
+### Angular Testing
+- Write unit tests for components and services
+- Use Jasmine and Karma for testing
+- Mock HTTP requests using TestBed
+- Test component interactions
+- Write integration tests for critical user flows
+
+## Performance Guidelines
+
+### C# Performance
+- Use async/await for I/O operations
+- Implement proper caching strategies
+- Use connection pooling for databases
+- Profile and optimize slow queries
+- Use lazy loading for large datasets
+
+### Angular Performance
+- Use OnPush change detection
+- Implement lazy loading for modules
+- Use trackBy function for ngFor
+- Optimize bundle size with tree shaking
+- Use virtual scrolling for large lists
+
+## Git Workflow
+
+### Branch Naming
+- Feature branches: `feature/[ticket-number]-description`
+- Bug fixes: `bugfix/[ticket-number]-description`
+- Hotfixes: `hotfix/[ticket-number]-description`
+- Releases: `release/version-number`
+
+### Commit Messages
+- Use conventional commit format
+- Keep commits atomic and focused
+- Include ticket numbers in commit messages
+- Write descriptive commit messages
+
+### Pull Requests
+- Create PRs for all changes
+- Include proper description and testing notes
+- Request code reviews from team members
+- Ensure CI/CD pipeline passes
+- Update documentation as needed
+
+## Code Review Checklist
+
+### C# Code Review
+- [ ] Follows naming conventions
+- [ ] Proper error handling implemented
+- [ ] Async/await used appropriately
+- [ ] Input validation present
+- [ ] Unit tests included
+- [ ] No hardcoded values
+- [ ] Proper logging implemented
+
+### Angular Code Review
+- [ ] Follows Angular style guide
+- [ ] Proper TypeScript types used
+- [ ] Component lifecycle handled correctly
+- [ ] Services properly injected
+- [ ] Templates are accessible
+- [ ] Unit tests included
+- [ ] No console.log statements in production
+
+## Environment Configuration
+
+### Development
+- Use appsettings.Development.json for local settings
+- Use environment.ts for Angular development
+- Enable detailed error messages
+- Use local database for development
+
+### Production
+- Use environment variables for sensitive data
+- Disable detailed error messages
+- Use production database
+- Enable logging and monitoring
+- Implement proper security headers
+
+## Documentation Requirements
+
+### API Documentation
+- Use Swagger/OpenAPI for API documentation
+- Document all endpoints with examples
+- Include error response examples
+- Keep documentation up to date
+
+### Code Documentation
+- Document complex business logic
+- Include setup instructions in README
+- Document deployment procedures
+- Maintain changelog for releases
+
+## Security Checklist
+
+### C# Security
+- [ ] Input validation implemented
+- [ ] SQL injection prevention
+- [ ] XSS protection
+- [ ] CSRF protection
+- [ ] Proper authentication
+- [ ] Authorization checks
+- [ ] Secure communication (HTTPS)
+
+### Angular Security
+- [ ] XSS protection (sanitization)
+- [ ] CSRF protection
+- [ ] Input validation
+- [ ] Secure HTTP headers
+- [ ] Content Security Policy
+- [ ] Dependency vulnerability scanning
+
+## Performance Monitoring
+
+### C# Monitoring
+- Implement application insights
+- Monitor database performance
+- Track API response times
+- Monitor memory usage
+- Set up alerting for critical issues
+
+### Angular Monitoring
+- Monitor bundle size
+- Track page load times
+- Monitor user interactions
+- Implement error tracking
+- Monitor API call performance
+
+## Deployment Guidelines
+
+### C# Deployment
+- Use Docker containers
+- Implement health checks
+- Use blue-green deployment
+- Monitor deployment metrics
+- Implement rollback procedures
+
+### Angular Deployment
+- Build optimization enabled
+- Use CDN for static assets
+- Implement caching strategies
+- Monitor performance metrics
+- Use progressive web app features
+
+## Maintenance
+
+### Code Maintenance
+- Regular dependency updates
+- Security patch management
+- Performance optimization
+- Code refactoring
+- Technical debt reduction
+
+### Documentation Maintenance
+- Keep README updated
+- Update API documentation
+- Maintain deployment guides
+- Update troubleshooting guides
+- Regular review of guidelines
+
+---
+
+## Quick Reference Commands
+
+### C# Development
+```bash
+# Create new solution
+dotnet new sln -n ProjectName
+
+# Add project to solution
+dotnet sln add src/ProjectName/ProjectName.csproj
+
+# Run tests
+dotnet test
+
+# Build project
+dotnet build
+
+# Run project
+dotnet run
+```
+
+### Angular Development
+```bash
+# Create new project
+ng new project-name
+
+# Generate component
+ng generate component component-name
+
+# Generate service
+ng generate service service-name
+
+# Run development server
+ng serve
+
+# Build for production
+ng build --prod
+
+# Run tests
+ng test
+```
+
+---
+
+*This guideline file should be reviewed and updated regularly to reflect current best practices and team preferences.* 
