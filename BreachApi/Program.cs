@@ -1,8 +1,13 @@
 using Scalar.AspNetCore;
 using MediatR;
 using System.Reflection;
+using QuestPDF;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Set QuestPDF license
+QuestPDF.Settings.License = LicenseType.Community;
 
 // Add services to the container.
 
