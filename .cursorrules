@@ -33,6 +33,8 @@
 - Models: `[Entity]` (e.g., `User`, `UserDto`)
 - ViewModels: `[Entity]ViewModel` (e.g., `UserViewModel`)
 - Repositories: `I[Entity]Repository` and `[Entity]Repository`
+- Queries: `[Entity][Action]Query` and `[Entity][Action]QueryHandler` (e.g., `GetUserByIdQuery`, `GetUserByIdQueryHandler`)
+- Commands: `[Entity][Action]Command` and `[Entity][Action]CommandHandler` (e.g., `CreateUserCommand`, `CreateUserCommandHandler`)
 
 ### Project Structure
 ```
@@ -41,6 +43,17 @@ src/
 ├── Services/
 ├── Models/
 ├── ViewModels/
+├── Features/
+│   ├── [Feature]/
+│   │   ├── Queries/
+│   │   │   ├── [Query].cs
+│   │   │   └── [Query]Handler.cs
+│   │   └── Commands/
+│   │       ├── [Command].cs
+│   │       └── [Command]Handler.cs
+│   └── Shared/
+│       ├── Behaviors/
+│       └── Validators/
 ├── Data/
 │   ├── Repositories/
 │   └── Context/
@@ -49,6 +62,25 @@ src/
 └── Configuration/
 ```
 
+### Preferred NuGet Packages
+- **Flurl.Http**: For HTTP client operations with fluent API
+- **MediatR**: For implementing CQRS pattern with mediator
+- **FluentValidation**: For input validation
+- **AutoMapper**: For object-to-object mapping
+- **Serilog**: For structured logging
+- **Swashbuckle.AspNetCore**: For API documentation
+- **Microsoft.EntityFrameworkCore**: For data access
+- **Microsoft.AspNetCore.Authentication.JwtBearer**: For JWT authentication
+
+### CQRS/MediatR Implementation
+- Use MediatR for implementing CQRS pattern
+- Separate queries (read operations) from commands (write operations)
+- Implement query handlers for data retrieval operations
+- Implement command handlers for data modification operations
+- Use Flurl.Http for external API calls within handlers
+- Implement validation using FluentValidation
+- Use AutoMapper for mapping between DTOs and domain models
+
 ### API Design
 - Use RESTful conventions for endpoints
 - Return appropriate HTTP status codes
@@ -56,6 +88,7 @@ src/
 - Use DTOs for API responses
 - Implement pagination for list endpoints
 - Use async/await for all database operations
+- Use Flurl.Http for external service calls
 
 ### Dependency Injection
 - Register services in `Program.cs` or `Startup.cs`
@@ -63,6 +96,7 @@ src/
 - Prefer interfaces over concrete implementations
 - Use scoped lifetime for DbContext
 - Use singleton for configuration services
+- Register MediatR handlers automatically
 
 ### Database
 - Use Entity Framework Core for data access
